@@ -43,10 +43,14 @@ def calculate_fine(overdue_days):
 
 @app.route("/")
 def index():
+    query = request.args.get("q", "").strip()
     conn = get_db()
-    books = conn.execute("SELECT * FROM books").fetchall()
+    if query:
+        books = conn.execute("SELECT * FROM books WHERE title LIKE ?", (f"%{query}%",)).fetchall()
+    else:
+        books = conn.execute("SELECT * FROM books").fetchall()
     conn.close()
-    return render_template("index.html", books=books, username=session.get("username"))
+    return render_template("index.html", books=books, query=query, username=session.get("username"))
 
 @app.route("/register", methods=["GET", "POST"])
 def register():

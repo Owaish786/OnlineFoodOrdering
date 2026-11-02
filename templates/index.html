@@ -19,6 +19,14 @@
 
         <hr>
 
+        <form method="GET" action="/" class="search-box">
+            <input type="text" name="q" value="{{ query or '' }}" placeholder="Search books by title...">
+            <button type="submit" id="search-btn">Search</button>
+            {% if query %}
+                <a href="/" style="margin-left: 10px;">Clear</a>
+            {% endif %}
+        </form>
+
         <h2>Available Books</h2>
         <ul id="book-list">
             {% for book in books %}
