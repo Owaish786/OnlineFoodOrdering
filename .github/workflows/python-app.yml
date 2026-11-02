@@ -26,5 +26,4 @@ jobs:
 
     - name: Run unit tests with PyTest
       run: |
-        pytest tests/test_fine.py -v
-
+        python -m pytest tests/test_fine.py -v
