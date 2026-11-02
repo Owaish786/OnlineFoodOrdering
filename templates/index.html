@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Library Management System</h1>
+        
+        <div class="nav">
+            {% if username %}
+                <p>Welcome, <span id="user-display">{{ username }}</span>! | <a id="logout-btn" href="/logout">Logout</a></p>
+            {% else %}
+                <p><a href="/login">Login</a> | <a href="/register">Register</a></p>
+            {% endif %}
+        </div>
+
+        <hr>
+
+        <h2>Available Books</h2>
+        <ul id="book-list">
+            {% for book in books %}
+                <li><strong>{{ book.title }}</strong> by {{ book.author }}</li>
+            {% else %}
+                <li>No books found.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
+
